@@ -16,8 +16,7 @@ jobs:
       - name: Create .env.production for Production
         if: github.ref_name == 'master'
         run: |          
-          echo "API_URL=${{ vars.API_URL }}" >> .env.production
-          echo "NG_APP_JWT_SECRET=${{ secrets.NG_APP_JWT_SECRET }}" >> .env.production
+          echo "API_URL=${{ vars.API_URL }}" >> .env.production          
           
       - name: Set up Node.js
         uses: actions/setup-node@v3
