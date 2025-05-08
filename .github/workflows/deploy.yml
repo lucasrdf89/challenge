@@ -28,6 +28,11 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Install ESLint plugins
+        run: |
+          yarn add eslint-plugin-import --dev
+          yarn add eslint-config-airbnb-base --dev
+
       - name: Run lint
         run: yarn lint
 
