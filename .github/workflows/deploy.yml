@@ -33,6 +33,13 @@ jobs:
 
       - name: Build project
         run: yarn build
-    
+
+      - name: Verify build output
+        run: |
+          if [ ! -d "dist" ]; then
+            echo "Build output directory 'dist' not found!"
+            exit 1
+          fi
+
 
 
