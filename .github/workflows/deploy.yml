@@ -23,16 +23,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: 'yarn'
+          cache: 'bun'
 
       - name: Install dependencies
-        run: yarn install
+        run: bun install
 
       - name: Run lint
-        run: yarn lint
+        run: bun lint
 
       - name: Build project
-        run: yarn build
+        run: bun build
 
       - name: Verify build output
         run: |
