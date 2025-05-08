@@ -1,0 +1,17 @@
+<div class="form-container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+        <h2 class="prim">{{title}}</h2>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Title</mat-label>
+            <input aria-label="title task" matInput formControlName="title" placeholder="Enter your title" type="text">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Description</mat-label>
+            <textarea aria-label="description text" [rows]="5" matInput formControlName="description"
+                placeholder="Enter a detailed description" type="text" required></textarea>
+        </mat-form-field>
+
+        <button [disabled]="form.invalid || loading" mat-raised-button color="primary" type="submit"
+            aria-label="Submit Form" class="full-width">{{ isEdit ? 'Update Task' : 'Create Task' }}</button>
+    </form>
+</div>

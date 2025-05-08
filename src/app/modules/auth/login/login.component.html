@@ -1,0 +1,24 @@
+<div class="login-container">
+    <mat-card class="center-card">
+        <h2 class="prim">Welcome</h2>
+        <form [formGroup]="form" (ngSubmit)="onSubmit($event)" class="full-width">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" placeholder="Enter your email">
+            </mat-form-field>
+            
+            <div class="button-spinner-container">
+                <div class="spinner-container" *ngIf="loading">
+                    <mat-progress-spinner
+                        class="small-spinner"
+                        color="primary"
+                        mode="indeterminate">
+                    </mat-progress-spinner>
+                </div>
+                
+                <button *ngIf="!loading" [disabled]="form.invalid" mat-raised-button color="primary" type="submit"
+                    class="full-width">Ingresar</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

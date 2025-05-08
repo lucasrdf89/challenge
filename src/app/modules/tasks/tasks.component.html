@@ -1,0 +1,15 @@
+<app-toolbar></app-toolbar>
+
+<ng-container *ngIf="loading; else content">
+    <div class="spinner-container">
+        <mat-progress-spinner class="medium-spinner" color="primary" mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
+</ng-container>
+
+<ng-template #content>
+    <app-table [title]="'My Tasks'" [btnAdd]="true" [data]="tasks" [cols]="cols" [btnEdit]="true" [btnDelete]="true"
+        [checkInput]="true" (modalOpenedEvent)="openDialog($event)" (deleteEvent)="deleteTask($event)"
+        (updateEvent)="updateTask($event)">
+    </app-table>
+</ng-template>
