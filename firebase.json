@@ -1,7 +1,7 @@
 {
   "hosting": {
-    "site": "tasks-7bdeb-68574",
-    "public": "dist",
+    "site": "tasks-7bdeb-68574",    
+    "public": "dist/atom-challenge-fe-template/browser",
     "ignore": [
       "firebase.json",
       "**/.*",

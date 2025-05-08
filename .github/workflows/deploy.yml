@@ -1,0 +1,39 @@
+name: Deployment
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Create .env.production for Production
+        if: github.ref_name == 'master'
+        run: |
+          echo 'ENVIRONMENT=production' > .env.production
+          echo "API_URL=${{ vars.API_URL }}" >> .env.production
+          echo "NG_APP_JWT_SECRET=${{ secrets.NG_APP_JWT_SECRET }}" >> .env.production
+          
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run lint
+        run: yarn lint
+
+      - name: Build project
+        run: yarn build
+    
+
+
