@@ -47,8 +47,8 @@ describe("TableComponent", () => {
         const compiled = fixture.nativeElement as HTMLElement;
         const headers = compiled.querySelectorAll("th[mat-header-cell]");
         expect(headers.length).toBeGreaterThan(0);
-        const headerTexts = Array.from(headers).map(h => h.textContent?.toLowerCase() ?? "");
-        expect(headerTexts.some(text => text.includes("name"))).toBeTrue();
+        const headerTexts = Array.from(headers).map((h) => h.textContent?.toLowerCase() ?? "");
+        expect(headerTexts.some((text) => text.includes("name"))).toBeTrue();
     });
 
     it("should render table rows", () => {

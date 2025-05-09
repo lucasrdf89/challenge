@@ -3,14 +3,13 @@ import { TestBed } from "@angular/core/testing";
 
 import { AuthService } from "./auth.service";
 
-// Mock para ApiService
 class MockApiService {}
 
 describe("AuthService", () => {
     beforeEach(() => TestBed.configureTestingModule({
         imports: [HttpClientTestingModule],
         providers: [
-            { provide: 'ApiService', useClass: MockApiService }
+            { provide: "ApiService", useClass: MockApiService }
         ]
     }));
 
