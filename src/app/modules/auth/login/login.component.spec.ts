@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { AuthService } from "../../../services/auth.service";
 import { LoginComponent } from "./login.component";
+import { ApiService } from "../../../services/api.service";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 describe("LoginComponent", () => {
     let component: LoginComponent;
@@ -8,7 +13,17 @@ describe("LoginComponent", () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [LoginComponent]
+            imports: [
+                LoginComponent,
+                HttpClientTestingModule,
+                MatFormFieldModule,
+                MatInputModule,
+                BrowserAnimationsModule
+            ],
+            providers: [
+                { provide: AuthService, useValue: {} },
+                { provide: ApiService, useValue: {} }
+            ]
         })
             .compileComponents();
 

@@ -1,8 +1,8 @@
-import { config, https } from "firebase-functions";
+import {config, https} from "firebase-functions";
 import express from "express";
-import type { Request, Response, NextFunction } from "express";
+import type {Request, Response, NextFunction} from "express";
 import cors from "cors";
-import { expressjwt as jwt } from "express-jwt";
+import {expressjwt as jwt} from "express-jwt";
 import authRoute from "./routes/auth.route";
 import taskRoute from "./routes/task.route";
 import admin from "firebase-admin";
@@ -56,16 +56,16 @@ app.use(
     next: NextFunction
   ) => {
     console.error(err);
-    res.status(err.status || 500).json({ status: 500, msg: "Internal Server Error" });
+    res.status(err.status || 500).json({status: 500, msg: "Internal Server Error"});
   }
 );
 
 const routes: { path: string; handler: any }[] = [
-  { path: "auth", handler: authRoute },
-  { path: "task", handler: taskRoute },
+  {path: "auth", handler: authRoute},
+  {path: "task", handler: taskRoute},
 ];
 
-routes.forEach(({ path, handler }) => {
+routes.forEach(({path, handler}) => {
   app.use(`/${path}`, handler);
 });
 

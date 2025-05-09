@@ -1,7 +1,7 @@
 import type {NextFunction, Response} from "express";
 import {verify, type JwtPayload} from "jsonwebtoken";
 import type {IncomingMessage} from "http";
-import appConfig from "../../config";
+import {secretJWT} from "..";
 
 /**
  * Interface representing an authenticated request.
@@ -29,7 +29,7 @@ const authorize = () => {
       );
       return;
     }
-    const decoded: string | JwtPayload = verify(token, appConfig.JWT_SECRET);
+    const decoded: string | JwtPayload = verify(token, secretJWT);
     req.user = decoded;
     next();
   };

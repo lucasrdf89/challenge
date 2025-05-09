@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { TasksComponent } from "./tasks.component";
+
+class MockTaskService {}
+class MockApiService {}
 
 describe("TasksComponent", () => {
     let component: TasksComponent;
@@ -8,7 +11,14 @@ describe("TasksComponent", () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [TasksComponent]
+            imports: [
+                TasksComponent,
+                HttpClientTestingModule
+            ],
+            providers: [
+                { provide: 'TaskService', useClass: MockTaskService },
+                { provide: 'ApiService', useClass: MockApiService }
+            ]
         })
             .compileComponents();
 
