@@ -57,12 +57,12 @@ export class TasksComponent implements OnInit, OnDestroy {
 
     async updateTask(updatedTask: Task): Promise<void> {
         const resp: boolean = await this.taskService.updateTask(updatedTask);
-        if(resp) {
+        if (resp) {
             this.tasks = this.tasks.map((task: Task) => task.id === updatedTask.id ? updatedTask : task);
             this.notification.success("Task updated successfully");
         } else {
-            this.notification.error("Error updating task");            
-        }        
+            this.notification.error("Error updating task");
+        }
     }
 
     async deleteTask(task: Task): Promise<void> {
