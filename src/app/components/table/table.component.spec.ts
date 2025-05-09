@@ -27,7 +27,7 @@ describe("TableComponent", () => {
                 MatCheckboxModule,
                 MatButtonModule,
                 MatIconModule,
-                BrowserAnimationsModule 
+                BrowserAnimationsModule
             ]
         }).compileComponents();
 
