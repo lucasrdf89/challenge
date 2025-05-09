@@ -1,7 +1,8 @@
-import { TestBed } from "@angular/core/testing";
 import { HTTP_INTERCEPTORS, HttpClient } from "@angular/common/http";
-import { ErrorInterceptorService } from "./error-interceptor.service";
 import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
+import { TestBed } from "@angular/core/testing";
+
+import { ErrorInterceptorService } from "./error-interceptor.service";
 
 describe("ErrorInterceptorService", () => {
     let http: HttpClient;
@@ -25,7 +26,7 @@ describe("ErrorInterceptorService", () => {
 
     it("should pass through successful requests", () => {
         const mockData = { foo: "bar" };
-        http.get("/test").subscribe(data => {
+        http.get("/test").subscribe((data) => {
             expect(data).toEqual(mockData);
         });
         const req = httpMock.expectOne("/test");
@@ -40,7 +41,7 @@ describe("ErrorInterceptorService", () => {
                 fail("should have failed with 404 error");
                 done();
             },
-            error: (error: Error) => {            
+            error: (error: Error) => {
                 expect(error).toBeInstanceOf(Error);
                 expect(error.message).toBe("Not Found");
                 done();
@@ -49,5 +50,5 @@ describe("ErrorInterceptorService", () => {
         const req = httpMock.expectOne("/error");
         req.flush({ message: errorMsg }, { status: 404, statusText: "Not Found" });
         httpMock.verify();
-    });   
+    });
 });

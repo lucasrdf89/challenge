@@ -1,7 +1,8 @@
 import { TestBed } from "@angular/core/testing";
-import { TaskService } from "./task.service";
-import { ApiService } from "./api.service";
+
 import { Task } from "../interfaces/task.interfaces";
+import { ApiService } from "./api.service";
+import { TaskService } from "./task.service";
 
 class MockApiService {
     get = jasmine.createSpy().and.returnValue(Promise.resolve({

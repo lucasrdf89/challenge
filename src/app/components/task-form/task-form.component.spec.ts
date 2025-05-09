@@ -1,15 +1,14 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { TaskFormComponent } from "./task-form.component";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { MatButtonModule } from "@angular/material/button";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { TaskFormComponent } from "./task-form.component";
 
-
-class MockTaskService { }
-class MockApiService { }
+const MockTaskService = class {};
+const MockApiService = class {};
 
 describe("TaskFormComponent", () => {
     let component: TaskFormComponent;
@@ -26,14 +25,12 @@ describe("TaskFormComponent", () => {
                 BrowserAnimationsModule
             ],
             providers: [
-                { provide: 'TaskService', useClass: MockTaskService },
-                { provide: 'ApiService', useClass: MockApiService },
+                { provide: "TaskService", useClass: MockTaskService },
+                { provide: "ApiService", useClass: MockApiService },
                 { provide: MAT_DIALOG_DATA, useValue: {} },
-                { provide: MatDialogRef, useValue: { close: () => { } } }
+                { provide: MatDialogRef, useValue: { close: () => {} } }
             ]
-        })
-            .compileComponents();
-
+        }).compileComponents();
         fixture = TestBed.createComponent(TaskFormComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
@@ -66,7 +63,7 @@ describe("TaskFormComponent", () => {
             title: "Test Task",
             description: "Test Description"
         });
-        component.onSubmit(new Event('submit'));
+        component.onSubmit(new Event("submit"));
         expect(component.onSubmit).toHaveBeenCalled();
     });
 
@@ -76,8 +73,7 @@ describe("TaskFormComponent", () => {
             title: "",
             description: ""
         });
-        component.onSubmit(new Event('submit'));
+        component.onSubmit(new Event("submit"));
         expect(component.onSubmit).toHaveBeenCalled();
     });
-
 });

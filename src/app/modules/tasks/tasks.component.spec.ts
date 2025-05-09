@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { TasksComponent } from "./tasks.component";
 
-class MockTaskService {}
-class MockApiService {}
+const mockTaskService = {};
+const mockApiService = {};
 
 describe("TasksComponent", () => {
     let component: TasksComponent;
@@ -16,8 +16,8 @@ describe("TasksComponent", () => {
                 HttpClientTestingModule
             ],
             providers: [
-                { provide: 'TaskService', useClass: MockTaskService },
-                { provide: 'ApiService', useClass: MockApiService }
+                { provide: "TaskService", useValue: mockTaskService },
+                { provide: "ApiService", useValue: mockApiService }
             ]
         })
             .compileComponents();
