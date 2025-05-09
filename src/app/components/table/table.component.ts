@@ -1,24 +1,26 @@
 import { SelectionModel } from "@angular/cdk/collections";
 import { CommonModule } from "@angular/common";
 import {
-    ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnChanges, Output
+    ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnChanges, Output, ViewChild, AfterViewInit
 } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTableDataSource, MatTableModule } from "@angular/material/table";
+import { MatPaginator, MatPaginatorModule } from "@angular/material/paginator";
+import { MatSort, MatSortModule } from "@angular/material/sort";
 
 import { ConfirmationDialogService } from "../../services/confirmation-dialog.service";
 
 @Component({
     selector: "app-table",
     standalone: true,
-    imports: [CommonModule, MatTableModule, MatCheckboxModule, MatButtonModule, MatIconModule],
+    imports: [CommonModule, MatTableModule, MatCheckboxModule, MatButtonModule, MatIconModule, MatPaginatorModule, MatSortModule],
     templateUrl: "./table.component.html",
     styleUrls: ["./table.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TableComponent<T extends { checked?: boolean }> implements OnChanges {
+export class TableComponent<T extends { checked?: boolean }> implements OnChanges, AfterViewInit {
     @Input() title: string = "";
     @Input() cols: string[] = [];
     @Input() data: T[] = [];
@@ -36,10 +38,17 @@ export class TableComponent<T extends { checked?: boolean }> implements OnChange
     displayedColumns: string[] = [];
     dataSource: MatTableDataSource<T> = new MatTableDataSource<T>([]);
     isEmpty: boolean = true;
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
+    @ViewChild(MatSort) sort!: MatSort;
 
     ngOnChanges(): void {
         this.updateDisplayedColumns();
         this.updateDataSource();
+    }
+
+    ngAfterViewInit(): void {
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
     }
 
     private updateDisplayedColumns(): void {
@@ -55,6 +64,12 @@ export class TableComponent<T extends { checked?: boolean }> implements OnChange
     private updateDataSource(): void {
         this.dataSource = new MatTableDataSource<T>(this.data);
         this.isEmpty = this.dataSource.data.length === 0;
+        if (this.paginator) {
+            this.dataSource.paginator = this.paginator;
+        }
+        if (this.sort) {
+            this.dataSource.sort = this.sort;
+        }
     }
 
     checkboxLabel(row: T): string {

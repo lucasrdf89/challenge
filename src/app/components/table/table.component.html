@@ -5,7 +5,7 @@
     </div>
 
     <div class="table-container">
-        <table mat-table [dataSource]="dataSource" matSort class="table table-striped">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
             <ng-container *ngIf="checkInput" matColumnDef="checked">
                 <th mat-header-cell *matHeaderCellDef aria-label="Select All"></th>
                 <td mat-cell *matCellDef="let row">
@@ -44,5 +44,6 @@
         <div *ngIf="isEmpty" class="empty-state">
             <p>No data available</p>
         </div>
+        <mat-paginator  *ngIf="!isEmpty" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
 </div>
