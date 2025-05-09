@@ -4,6 +4,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTableModule } from "@angular/material/table";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { TableComponent } from "./table.component";
 
@@ -25,7 +26,8 @@ describe("TableComponent", () => {
                 MatTableModule,
                 MatCheckboxModule,
                 MatButtonModule,
-                MatIconModule
+                MatIconModule,
+                BrowserAnimationsModule 
             ]
         }).compileComponents();
 
