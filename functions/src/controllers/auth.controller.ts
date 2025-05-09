@@ -1,7 +1,6 @@
 import {sign} from "jsonwebtoken";
-import appConfig from "../../config"; // Renamed default import
 import User from "../entities/user";
-import {firestore} from "../index";
+import {firestore, secretJWT} from "../index";
 
 /**
  * Generates a token and refresh token for a user.
@@ -14,12 +13,12 @@ const getToken = (user: User): object => {
     email: user.email,
     token: sign(
       {id: user.id},
-      appConfig.JWT_SECRET,
+      secretJWT,
       {expiresIn: "1h"}
     ),
     refreshToken: sign(
       {id: user.id},
-      appConfig.JWT_SECRET,
+      secretJWT,
       {expiresIn: "1d"}
     ),
   };
