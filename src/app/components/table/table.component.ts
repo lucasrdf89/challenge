@@ -15,7 +15,14 @@ import { ConfirmationDialogService } from "../../services/confirmation-dialog.se
 @Component({
     selector: "app-table",
     standalone: true,
-    imports: [CommonModule, MatTableModule, MatCheckboxModule, MatButtonModule, MatIconModule, MatPaginatorModule, MatSortModule],
+    imports: [
+        CommonModule,
+        MatTableModule, 
+        MatCheckboxModule, 
+        MatButtonModule, 
+        MatIconModule, 
+        MatPaginatorModule, 
+        MatSortModule],
     templateUrl: "./table.component.html",
     styleUrls: ["./table.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush
